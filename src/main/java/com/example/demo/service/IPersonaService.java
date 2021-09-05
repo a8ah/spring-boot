@@ -1,8 +1,9 @@
-package com.example.service;
+package com.example.demo.service;
+
+import com.example.demo.entity.Person;
 
 import java.util.List;
 import java.util.Optional;
-import com.example.entity.Person;
 
 public interface IPersonaService {
 

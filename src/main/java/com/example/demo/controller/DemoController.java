@@ -1,28 +1,23 @@
-package com.example.controller;
+package com.example.demo.controller;
 
-import java.util.List;
 
-import com.example.entity.Person;
-import com.example.service.PersonaServiceImp;
-
+import com.example.demo.entity.Person;
+import com.example.demo.service.PersonaServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 
 @RestController
 public class DemoController {
     
 	@Autowired
-	PersonaServiceImp persona_service;
+    PersonaServiceImp persona_service;
 
 	@GetMapping("/persons")
     public List<Person> getAllPersons() {
