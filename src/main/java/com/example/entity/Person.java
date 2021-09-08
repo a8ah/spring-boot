@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,9 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.springframework.lang.NonNull;
-
 @Entity
 @Table(name = "person")
 public class Person {
@@ -18,19 +15,21 @@ public class Person {
     private int idPerson;
 
     @Column(name = "username", length = 16)
-    @NonNull
     private String username;
 
     @Column(name = "email")
-    @NonNull
     private String email;
+
+    @Column(name = "password")
+    private String password;
 
     public Person(){}
 
-    public Person (int id, String username, String email ){
+    public Person (int id, String username, String email, String password ){
         this.idPerson=id;
         this.username= username;
         this.email= email; 
+        this.password= password;
     }
 
     public int getIdPerson() {
@@ -56,5 +55,13 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }   
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 }

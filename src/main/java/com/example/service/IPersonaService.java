@@ -1,6 +1,6 @@
-package com.example.demo.service;
+package com.example.service;
 
-import com.example.demo.entity.Person;
+import com.example.entity.Person;
 
 import java.util.List;
 import java.util.Optional;

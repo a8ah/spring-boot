@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.example.service;
 
-import com.example.demo.entity.Person;
-import com.example.demo.repository.IPersonRepository;
+import com.example.entity.Person;
+import com.example.repository.IPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +29,7 @@ public class PersonaServiceImp implements IPersonaService {
 
     @Override
     public Person savePerson(Person person) {
+        System.out.println(person.getPassword());
         return repo.save(person);
     }
 
