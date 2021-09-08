@@ -47,7 +47,6 @@ public class CategoryController {
 
     @GetMapping("/{id}")
     public CategoryDto getCategory(@PathVariable Integer id) {
-    System.out.println("id= "+ id);
         modelMapper = new ModelMapper();
         Category category= category_service.findCategoryById(id);
         CategoryDto categoryDto= modelMapper.map(category,CategoryDto.class);
