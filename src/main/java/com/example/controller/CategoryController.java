@@ -66,12 +66,13 @@ public class CategoryController {
     // }
 
     @PutMapping("/{id}")
-    public void signUp(@RequestBody CreateCategoryDto categoryDto,@PathVariable Integer id){
+    public void updateCategory(@RequestBody CreateCategoryDto categoryDto,@PathVariable Integer id){
         if(category_service.findCategoryById(id)!= null){
         modelMapper = new ModelMapper();
 
         // convert DTO to entity
         com.example.entity.Category category= modelMapper.map(categoryDto, com.example.entity.Category.class);
+        category.setId(id);
 
         // create_category
         String  message = category_service.updateCategory(category);
@@ -81,7 +82,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDto> signUp(@RequestBody CreateCategoryDto createCategoryDto){
+    public ResponseEntity<CategoryDto> createCategory(@RequestBody CreateCategoryDto createCategoryDto){
     
         modelMapper = new ModelMapper();
 

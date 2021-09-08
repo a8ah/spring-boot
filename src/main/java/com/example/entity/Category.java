@@ -1,10 +1,13 @@
 package com.example.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Category {
@@ -15,6 +18,17 @@ public class Category {
     
     @Column(name = "name", length = 100)
     private String name;
+
+    @OneToMany
+    private Set<Product> poductos;
+
+    public Set<Product> getPoductos() {
+        return this.poductos;
+    }
+
+    public void setPoductos(Set<Product> poductos) {
+        this.poductos = poductos;
+    }
 
     public Category(){};
     

@@ -4,7 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;;
 
 @Entity
 public class Product {
@@ -22,11 +24,25 @@ public class Product {
     @Column
     private float price;
 
-    public Product(int id, String name, String description, float price) {
-        this.id= id;
+    @ManyToOne
+    @JoinColumn(name="category_id", nullable=false)
+    private Category category;
+
+    public Category getCategory() {
+        return this.category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Product(){}
+    
+    public Product(String name, String description, float price, Category category) {
         this.name=name;
         this.description=description;
         this.price= price;
+        this.category=category;
     }
 
     public int getId() {

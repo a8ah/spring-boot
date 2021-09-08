@@ -27,7 +27,7 @@ public class CategoryServiceImpl implements ICategoryService{
 
     @Override
     public String deleteCategory(Integer id) {
-        String message="Product not found";
+        String message="Category not found";
         if(repo.findById(id)!=null){
         repo.deleteById(id);
         message="Succesful deleted";
@@ -38,7 +38,7 @@ public class CategoryServiceImpl implements ICategoryService{
 
     @Override
     public String updateCategory(Category category) {
-        String message="Product not found";
+        String message="Category not found";
         if(repo.findById(category.getId())!=null){
         repo.save(category);
         message="Succesful updated";
