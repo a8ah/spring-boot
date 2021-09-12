@@ -2,6 +2,8 @@ package com.example.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.example.dto.RegistryDto;
 import com.example.dto.UserDto;
 import com.example.entity.Person;
@@ -35,14 +37,24 @@ public class UserController {
         return persona_service.findAll();
     }
 
-	@PostMapping(value = "/add_person",consumes = {"application/json"},produces = {"application/json"})
+    @PostMapping(value = "/registry",consumes = {"application/json"},produces = {"application/json"})
     @ResponseBody
-    public ResponseEntity<Person> addItem(@RequestBody Person person, UriComponentsBuilder builder){
-        persona_service.savePerson(person);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/addItem/{id}").buildAndExpand(person.getIdPerson()).toUri());
+    public ResponseEntity<UserDto> addItem(@RequestBody @Valid RegistryDto registryDto, UriComponentsBuilder builder){
         
-        return new ResponseEntity<Person>(headers, HttpStatus.CREATED);
+        modelMapper = new ModelMapper();
+
+        // convert DTO to entity
+        Person person= modelMapper.map(registryDto, Person.class);
+
+        person= persona_service.savePerson(person);
+
+         // convert entity to DTO 
+        UserDto userDto= modelMapper.map(person,UserDto.class);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(builder.path("/user/{id}").buildAndExpand(userDto.getId()).toUri());
+        
+        return new ResponseEntity<UserDto>(headers, HttpStatus.CREATED);
     }
 
     // @PostMapping("/signin")
@@ -51,21 +63,5 @@ public class UserController {
     // user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
     //     userRepository.save(user);
     // }
-
-    @PostMapping("/registry")
-    public ResponseEntity<UserDto> signUp(@RequestBody RegistryDto registryDto){
     
-        modelMapper = new ModelMapper();
-
-        // convert DTO to entity
-        Person registry_person= modelMapper.map(registryDto, Person.class);
-
-        // registry person
-        registry_person= persona_service.savePerson(registry_person);
-
-        // return UserDto
-        UserDto registred_user= modelMapper.map(registry_person,UserDto.class);
-        return ResponseEntity.ok().body(registred_user);
-
-    }
 }

@@ -1,10 +1,17 @@
 package com.example.dto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
 public class CreateProductDto {
     
+    @NotEmpty
     private String name;
     private String description;
+    
+    @Positive
     private float price;
+    
+    @Positive
     private int category_id;
 
     public CreateProductDto(){}

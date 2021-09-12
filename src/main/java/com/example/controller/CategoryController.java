@@ -3,6 +3,8 @@ package com.example.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.example.dto.CategoryDto;
 import com.example.dto.CreateCategoryDto;
 import com.example.entity.Category;
@@ -65,7 +67,7 @@ public class CategoryController {
     // }
 
     @PutMapping("/{id}")
-    public void updateCategory(@RequestBody CreateCategoryDto categoryDto,@PathVariable Integer id){
+    public void updateCategory(@RequestBody @Valid CreateCategoryDto categoryDto,@PathVariable Integer id){
         if(category_service.findCategoryById(id)!= null){
         modelMapper = new ModelMapper();
 
@@ -81,7 +83,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDto> createCategory(@RequestBody CreateCategoryDto createCategoryDto){
+    public ResponseEntity<CategoryDto> createCategory(@RequestBody @Valid CreateCategoryDto createCategoryDto){
     
         modelMapper = new ModelMapper();
 

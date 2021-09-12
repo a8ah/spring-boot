@@ -7,6 +7,8 @@ import com.example.entity.Role;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.example.dto.CreateRoleDto;
 
 import org.modelmapper.ModelMapper;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/roles")
@@ -64,7 +67,7 @@ public class RoleController {
     }
 
     @PostMapping
-    public ResponseEntity<RoleDto> createCategory(@RequestBody CreateRoleDto createRoleDto){
+    public ResponseEntity<RoleDto> createCategory(@RequestBody @Valid  CreateRoleDto createRoleDto){
     
         modelMapper = new ModelMapper();
 

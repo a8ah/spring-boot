@@ -3,6 +3,8 @@ package com.example.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.example.dto.CreateProductDto;
 import com.example.dto.ProductDto;
 import com.example.entity.Product;
@@ -57,14 +59,14 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public void updateProduct(@RequestBody CreateProductDto createProductDto,@PathVariable Integer id){
+    public void updateProduct(@RequestBody @Valid CreateProductDto createProductDto,@PathVariable Integer id){
         // updating_product
         String  message = product_service.updateProduct(createProductDto,id);
         System.out.println(message);
     } 
 
     @PostMapping
-    public ResponseEntity<ProductDto> createProduct(@RequestBody CreateProductDto createProductDto){
+    public ResponseEntity<ProductDto> createProduct(@RequestBody @Valid CreateProductDto createProductDto){
         // create_product
         Product product= product_service.saveProduct(createProductDto);
 

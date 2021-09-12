@@ -1,7 +1,10 @@
 package com.example.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 public class CreateRoleDto {
     
+    @NotEmpty
     private String name;
 
     public CreateRoleDto(){}
