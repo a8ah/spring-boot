@@ -1,0 +1,20 @@
+  server:
+    port: 9898
+
+  spring:
+    jpa:
+      database: POSTGRESQL
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          jdbc:
+            lob:
+              nom_contextual_creation: true
+    datasource:
+      username: postgres
+      password: postgres
+      url: jdbc:postgresql://172.23.0.2:5432/demo
+      driver-class-name: org.postgresql.Driver
